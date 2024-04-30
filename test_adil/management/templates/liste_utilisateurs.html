@@ -3,22 +3,38 @@
 {% block title %}Liste des utilisateurs{% endblock %}
 
 {% block content %}
-<h2>Liste des utilisateurs</h2>
-<ul>
-  {% for utilisateur in utilisateurs %}
-  <li>{{ utilisateur.nom }} {{ utilisateur.prenom }} - {{ utilisateur.adresse_email }}</li>
-  <ul>
-    {% for base_de_donnees in utilisateur.bases_de_donnees.all %}
-    <li>{{ base_de_donnees.nom }}</li>
-    {% endfor %}
-  </ul>
-  <p>
-    <a href="{% url 'modifier_utilisateur' utilisateur.id %}">Modifier</a> |
-    <a href="{% url 'supprimer_utilisateur' utilisateur.id %}">Supprimer</a>
-  </p>
-  {% endfor %}
-</ul>
-<a href="{% url 'creer_utilisateur' %}">Créer un nouvel utilisateur</a>
-<br>
-<a href="{% url 'page_accueil' %}">Se déconnecter</a>
+<div class="container">
+  <h2 class="mt-4 mb-3">Liste des utilisateurs</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <ul class="list-group">
+        {% for utilisateur in utilisateurs %}
+        <li class="list-group-item">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h5 class="mb-1">{{ utilisateur.nom }} {{ utilisateur.prenom }}</h5>
+              <p class="mb-1">{{ utilisateur.adresse_email }}</p>
+              <ul class="list-inline">
+                {% for base_de_donnees in utilisateur.bases_de_donnees.all %}
+                <li class="list-inline-item">{{ base_de_donnees.nom }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div>
+              <a href="{% url 'modifier_utilisateur' utilisateur.id %}" class="btn btn-primary btn-sm mr-2">Modifier</a>
+              <a href="{% url 'supprimer_utilisateur' utilisateur.id %}" class="btn btn-danger btn-sm">Supprimer</a>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <a href="{% url 'creer_utilisateur' %}" class="btn btn-success">Créer un nouvel utilisateur</a>
+      <a href="{% url 'page_accueil' %}" class="btn btn-secondary">Se déconnecter</a>
+    </div>
+  </div>
+</div>
 {% endblock %}

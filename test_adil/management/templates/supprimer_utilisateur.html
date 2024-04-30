@@ -3,10 +3,22 @@
 {% block title %}Supprimer un utilisateur{% endblock %}
 
 {% block content %}
-<h1>Supprimer un utilisateur</h1>
-<p>Êtes-vous sûr de vouloir supprimer l'utilisateur "{{ utilisateur }}" ?</p>
-<form method="post">
-  {% csrf_token %}
-  <button type="submit">Confirmer la suppression</button>
-</form>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card mt-5">
+        <div class="card-header">
+          <h3 class="card-title">Supprimer un utilisateur</h3>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Êtes-vous sûr de vouloir supprimer l'utilisateur "{{ utilisateur }}" ?</p>
+          <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Confirmer la suppression</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

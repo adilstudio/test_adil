@@ -3,19 +3,32 @@
 {% block title %}Créer un utilisateur{% endblock %}
 
 {% block content %}
-<h1>Créer un utilisateur</h1>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <label for="id_bases_de_donnees">Bases de données :</label>
-  <div id="id_bases_de_donnees">
-    {% for value, label in form.bases_de_donnees.field.choices %}
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" name="{{ form.bases_de_donnees.html_name }}"
-        id="id_{{ form.bases_de_donnees.name }}_{{ forloop.counter }}" value="{{ value }}">
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card mt-5">
+        <div class="card-header">
+          <h3 class="card-title">Créer un utilisateur</h3>
+        </div>
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <label for="id_bases_de_donnees">Bases de données :</label>
+            <div id="id_bases_de_donnees">
+              {% for value, label in form.bases_de_donnees.field.choices %}
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="{{ form.bases_de_donnees.html_name }}"
+                  id="id_{{ form.bases_de_donnees.name }}_{{ forloop.counter }}" value="{{ value }}">
+              </div>
+              {% endfor %}
+            </div>
+            <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+            <div style="margin:20px; height:20px"></div>
+          </form>
+        </div>
+      </div>
     </div>
-    {% endfor %}
   </div>
-  <button type="submit">Créer utilisateur</button>
-</form>
+</div>
 {% endblock %}

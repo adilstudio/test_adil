@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
   <title>{% block title %}Gestion Utilisateurs{% endblock %}</title>
 </head>
 
 <body>
-  <header>
-    <h1>Gestion Utilisateurs</h1>
-        Mon header
+  <header class="header">
+    <a href="{% url 'page_accueil' %}" class="logo">
+      <h1>Gestion Utilisateurs</h1>
+    </a>
+
   </header>
 
   <main>
@@ -18,8 +26,8 @@
     {% endblock %}
   </main>
 
-  <footer>
-    Mon footer
+  <footer class="footer">
+    <p>&copy; 2024 My App. All rights reserved.</p>
   </footer>
 </body>
 
