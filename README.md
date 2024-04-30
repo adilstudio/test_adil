@@ -45,3 +45,47 @@ POSTGRES_PASSWORD=root
 ```
 
 vous pouvez changer root par les credentials que vous souhaitez.
+
+
+### Concernant le champ de multiple choix "Basededonnes", nous devrons injecter dans la base les 4 valeurs : Scopus, PubMed, Dimensions et Web of Science
+
+### Pour ce faire, il faut SOIT le faire à travers le shell:
+
+```bash
+python manage.py shell
+```
+
+### En ajoutant par la commande suivante:
+
+```bash
+from gestion_utilisateurs.models import Basededonnes
+Basededonnes.objects.create(nom="Scopus")
+Basededonnes.objects.create(nom="PubMed")
+Basededonnes.objects.create(nom="Dimensions")
+Basededonnes.objects.create(nom="Web of Science")
+```
+
+### Soit rajouter via l'interface d'administration. Pour pouvoir y accéder, il faut tout d'abord créer un super utilisateur en utilisant la commande suivante:
+
+```bash
+python manage.py createsuperuser
+```
+
+### Saisir les nouveaux identifiants et se connecter à l'administration sur http://localhost:8000/admin
+
+### Selectionner le model "Basededonnes" et ajouter les 4 valeurs : Scopus, PubMed, Dimensions et Web of Science
+
+### Ainsi, vous pourrez dorénavent créer des utilisateurs avec ces valeurs pour le champ "Basededonnes"
+
+
+## Vous pouvez aussi
+
+
+
+## Pour les tests, il suffit de lancer la commande suivante:
+
+```bash
+
+python manage.py test
+
+```
