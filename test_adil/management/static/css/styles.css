@@ -1,0 +1,33 @@
+/* Header styles */
+.header {
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  margin: auto;
+}
+
+.footer {
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+
+}
+
+.footer::focus {
+  display: none;
+}
+
+.header a {
+  text-decoration-style: none;
+  color: white;
+}
+
+.header a:hover {
+  text-decoration-style: none;
+  color: rgb(158, 50, 0);
+}
