@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from management.models import BaseDeDonnees
+
+admin.site.register(BaseDeDonnees)

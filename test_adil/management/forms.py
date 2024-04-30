@@ -1,20 +1,13 @@
 from django import forms
-from .models import Utilisateur
+from .models import Utilisateur, BaseDeDonnees
 
 class UtilisateurCreationForm(forms.ModelForm):
     class Meta:
         model = Utilisateur
         fields = ['nom', 'prenom', 'adresse_email', 'mot_de_passe', 'bases_de_donnees']
 
-    BASES_CHOICES = [
-        ('Scopus', 'Scopus'),
-        ('PubMed', 'PubMed'),
-        ('Dimensions', 'Dimensions'),
-        ('Web of Science', 'Web of Science'),
-    ]
-
-    bases_de_donnees = forms.MultipleChoiceField(
-        choices=BASES_CHOICES,
+    bases_de_donnees = forms.ModelMultipleChoiceField(
+        queryset=BaseDeDonnees.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
@@ -24,15 +17,8 @@ class UtilisateurModificationForm(forms.ModelForm):
         model = Utilisateur
         fields = ['nom', 'prenom', 'adresse_email', 'bases_de_donnees']
 
-    BASES_CHOICES = [
-        ('Scopus', 'Scopus'),
-        ('PubMed', 'PubMed'),
-        ('Dimensions', 'Dimensions'),
-        ('Web of Science', 'Web of Science'),
-    ]
-
-    bases_de_donnees = forms.MultipleChoiceField(
-        choices=BASES_CHOICES,
+    bases_de_donnees = forms.ModelMultipleChoiceField(
+        queryset=BaseDeDonnees.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
