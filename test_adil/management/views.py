@@ -1,15 +1,13 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, login, logout
-from .models import Utilisateur
-
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import UtilisateurCreationForm, UtilisateurModificationForm
+from .models import Utilisateur
+
 
 def page_accueil(request):
+    message = ""
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
@@ -18,10 +16,13 @@ def page_accueil(request):
             utilisateur = authenticate(username=nom_utilisateur, password=mot_de_passe)
             if utilisateur is not None:
                 login(request, utilisateur)
+                message = "Vous êtes identifié(e) avec succès!"
                 return redirect('liste_utilisateurs')
+            else :
+                message = "Identifiants invalides!"
     else:
         form = AuthenticationForm()
-    return render(request, 'page_accueil.html', {'form': form})
+    return render(request, 'page_accueil.html', {'form': form, 'message': message})
 
 def liste_utilisateurs(request):
     if not request.user.is_authenticated:
@@ -62,3 +63,7 @@ def supprimer_utilisateur(request, utilisateur_id):
         messages.success(request, 'Utilisateur supprimé avec succès.')
         return redirect('liste_utilisateurs')
     return render(request, 'supprimer_utilisateur.html', {'utilisateur': utilisateur})
+
+def logout_user(request):
+    logout(request)
+    return redirect('page_accueil')

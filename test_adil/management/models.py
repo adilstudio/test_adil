@@ -18,7 +18,7 @@ class Utilisateur(models.Model):
     nom = models.CharField(max_length=100)
     prenom = models.CharField(max_length=100)
     adresse_email = models.EmailField(unique=True)
-    mot_de_passe = models.CharField(max_length=100)  #mot de passe hashé avant l'envoi à la bd
+    mot_de_passe = models.CharField(max_length=100)  #mot de passe à hasher avant l'envoi à la bd
     bases_de_donnees = models.ManyToManyField(BaseDeDonnees)
 
     def __str__(self):
