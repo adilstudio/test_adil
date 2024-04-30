@@ -31,7 +31,9 @@ python manage.py createsuperuser
 
 ## La base de donnée est par défaut en sqlite3.
 
-## On peut utiliser à la place une base de données PostgreSQL, pour ce faire il faut lancer l'application avec un  un docker compose en utilisant la commande suivante:
+## On peut utiliser à la place une base de données PostgreSQL, pour ce faire il faut commenter la configuration de la base de données sqlite3 dans le fichier settings.py et décommenter la configuration de la base de données PostgreSQL.
+
+## Puis lancer l'application avec un  un docker compose en utilisant la commande suivante:
 
 ```bash
 docker-compose up
@@ -76,9 +78,6 @@ python manage.py createsuperuser
 ### Selectionner le model "Basededonnes" et ajouter les 4 valeurs : Scopus, PubMed, Dimensions et Web of Science
 
 ### Ainsi, vous pourrez dorénavent créer des utilisateurs avec ces valeurs pour le champ "Basededonnes"
-
-
-## Vous pouvez aussi
 
 
 
