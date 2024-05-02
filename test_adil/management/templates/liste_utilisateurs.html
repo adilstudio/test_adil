@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Liste des utilisateurs{% endblock %}
 
 {% block content %}
+
 <div class="container">
   <h2 class="mt-4 mb-3">Liste des utilisateurs</h2>
 
-  <!-- Search form -->
   <div class="row mb-3">
     <div class="col-md-6">
       <input type="text" id="search-input" class="form-control" placeholder="Rechercher par nom ou prénom">
@@ -20,17 +21,14 @@
         <li class="list-group-item">
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <h5 class="mb-1">{{ utilisateur.nom }} {{ utilisateur.prenom }}</h5>
-              <p class="mb-1">{{ utilisateur.adresse_email }}</p>
-              <ul class="list-inline">
-                {% for base_de_donnees in utilisateur.bases_de_donnees.all %}
-                <li class="list-inline-item">{{ base_de_donnees.nom }}</li>
-                {% endfor %}
-              </ul>
+              <h5 class="mb-1">{{ utilisateur.last_name }} {{ utilisateur.first_name }}</h5>
+              <p class="mb-1">{{ utilisateur.email }}</p>
             </div>
             <div>
-              <a href="{% url 'modifier_utilisateur' utilisateur.id %}" class="btn btn-primary btn-sm mr-2">Modifier</a>
-              <a href="{% url 'supprimer_utilisateur' utilisateur.id %}" class="btn btn-danger btn-sm">Supprimer</a>
+              <a href="{% url 'modifier_utilisateur' utilisateur.username %}"
+                class="btn btn-primary btn-sm mr-2">Modifier</a>
+              <a href="{% url 'supprimer_utilisateur' utilisateur.username %}"
+                class="btn btn-danger btn-sm">Supprimer</a>
             </div>
           </div>
         </li>
@@ -42,6 +40,17 @@
     <div class="col-md-6">
       <a href="{% url 'creer_utilisateur' %}" class="btn btn-success">Créer un nouvel utilisateur</a>
       <a href="{% url 'logout_user' %}" class="btn btn-secondary">Se déconnecter</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
     </div>
   </div>
 </div>
@@ -65,4 +74,5 @@
     });
   });
 </script>
+
 {% endblock %}

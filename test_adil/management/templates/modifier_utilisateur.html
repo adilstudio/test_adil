@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Modifier un utilisateur{% endblock %}
 
@@ -13,25 +14,19 @@
         <div class="card-body">
           <form method="post">
             {% csrf_token %}
-            <div class="form-group row-md-12">
-              <label for="id_nom" class="col-md-4">Nom:</label>
-              {{ form.nom }}
-            </div>
-            <div class="form-group row-md-12">
-              <label for="id_prenom" class="col-md-4">Prénom:</label>
-              {{ form.prenom }}
-            </div>
-            <div class="form-group row-md-12">
-              <label for="id_adresse_email" class="col-md-4">Adresse email:</label>
-              {{ form.adresse_email }}
-            </div>
-            <div class="form-group">
-              <label for="id_bases_de_donnees">Bases de données:</label>
-              {{ form.bases_de_donnees }}
-            </div>
+            {{ form.as_p }}
             <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
-            <div style="margin:20px; height:20px"></div>
           </form>
+          <div class="card-footer">
+            {% if messages %}
+            <ul class="messages">
+              {% for message in messages %}
+              <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+          <div style="margin:20px; height:20px"></div>
         </div>
       </div>
     </div>

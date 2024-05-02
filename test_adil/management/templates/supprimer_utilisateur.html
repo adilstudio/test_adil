@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Supprimer un utilisateur{% endblock %}
 
@@ -16,6 +17,15 @@
             {% csrf_token %}
             <button type="submit" class="btn btn-danger">Confirmer la suppression</button>
           </form>
+        </div>
+        <div class="card-footer">
+          {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
         </div>
       </div>
     </div>

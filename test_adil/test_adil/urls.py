@@ -22,7 +22,7 @@ urlpatterns = [
     path('', views.page_accueil, name='page_accueil'),
     path('liste-utilisateurs/', views.liste_utilisateurs, name='liste_utilisateurs'),
     path('creer-utilisateur/', views.creer_utilisateur, name='creer_utilisateur'),
-    path('modifier-utilisateur/<int:utilisateur_id>/', views.modifier_utilisateur, name='modifier_utilisateur'),
-    path('supprimer-utilisateur/<int:utilisateur_id>/', views.supprimer_utilisateur, name='supprimer_utilisateur'),
+    path('modifier-utilisateur/<str:username>/', views.modifier_utilisateur, name='modifier_utilisateur'),
+    path('supprimer-utilisateur/<str:username>/', views.supprimer_utilisateur, name='supprimer_utilisateur'),
     path('logout/', views.logout_user, name='logout_user'),
 ]
